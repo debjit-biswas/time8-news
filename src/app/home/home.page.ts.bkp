@@ -1,0 +1,142 @@
+import { Component } from '@angular/core';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+import { Toast } from '@ionic-native/toast/ngx';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+})
+export class HomePage {
+
+  
+
+  constructor(private iab: InAppBrowser,
+              private toast: Toast) { }
+
+  ngOnInit() {
+    this.openPage('https://time8.in');
+  }
+
+
+
+  openPage(url: string) {
+    const options: InAppBrowserOptions = {
+      zoom: 'no',
+      location: 'no',
+      toolbartranslucent: 'yes',
+      fullscreen: 'yes',
+      clearcache: 'yes',
+      clearsessioncache: 'yes',
+      hardwareback: 'yes',
+      allowInlineMediaPlayback: 'no',
+      hidden: 'no',
+      hidenavigationbuttons: 'yes',
+      disallowoverscroll: 'yes',
+      presentationstyle: 'fullscreen',
+      hidespinner: 'yes',
+      footer: 'yes'
+    }
+
+    const browser = this.iab.create(url, '_self', options);
+
+    browser.on('loadstop').subscribe(event => {
+      this.toast.show(`Page loaded!`, '5000', 'buttom').subscribe(
+        toast => {
+          console.log(toast);
+        }
+      );
+    });
+
+  }
+
+  ionViewDidEnter() {
+
+  }
+
+}
+
+
+
+
+
+======================================================================
+
+
+
+
+import { Component } from '@angular/core';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
+import { Toast } from '@ionic-native/toast/ngx';
+var require: any;
+var https = require('https');
+var siteState = 0;
+https.get('https://time8.in', function (res) {
+    // If you get here, you have a response.
+    // If you want, you can check the status code here to verify that it's `200` or some other `2xx`.
+    // console.log("its a 200");
+    siteState = 1;
+}).on('error', function (e) {
+    // Here, an error occurred.  Check `e` for the error.
+    console.log("Fuck got nothing!");
+    siteState = 0;
+});
+
+
+@Component({
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
+})
+
+
+export class HomePage {
+
+  constructor(private iab: InAppBrowser,
+              private toast: Toast) { }
+
+  ngOnInit() 
+  {
+      if(siteState=1)
+      {
+      this.openPage('https://time8.in');
+      } else { this.openPage('https://time8.tv');}
+  }
+
+  
+
+  openPage(url: string) {
+    const options: InAppBrowserOptions = {
+      zoom: 'no',
+      location: 'no',
+      toolbartranslucent: 'yes',
+      fullscreen: 'yes',
+      clearcache: 'yes',
+      clearsessioncache: 'yes',
+      hardwareback: 'yes',
+      allowInlineMediaPlayback: 'no',
+      hidden: 'no',
+      hidenavigationbuttons: 'yes',
+      disallowoverscroll: 'yes',
+      presentationstyle: 'fullscreen',
+      hidespinner: 'yes',
+      footer: 'yes'
+    }
+
+    const browser = this.iab.create(url, '_self', options);
+
+    browser.on('loadstop').subscribe(event => {
+      this.toast.show(`Page loaded!`, '5000', 'buttom').subscribe(
+        toast => {
+          console.log(toast);
+        }
+      );
+    });
+
+  }
+
+  ionViewDidEnter() {
+
+  }
+
+}

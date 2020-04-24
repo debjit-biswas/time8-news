@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser/ngx';
 import { Toast } from '@ionic-native/toast/ngx';
 
+
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -13,11 +15,14 @@ export class HomePage {
               private toast: Toast) { }
 
   ngOnInit() {
+
+    
+
     this.openPage('https://time8.in');
   }
 
 
-
+  
   openPage(url: string) {
     const options: InAppBrowserOptions = {
       zoom: 'no',
