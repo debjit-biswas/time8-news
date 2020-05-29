@@ -16,9 +16,7 @@ export class HomePage {
 
   ngOnInit() {
 
-    
-
-    this.openPage('https://time8.in');
+      this.openPage('https://time8.in');
   }
 
 
@@ -40,6 +38,8 @@ export class HomePage {
       hidespinner: 'yes',
       footer: 'yes'
     }
+
+    
 
     const browser = this.iab.create(url, '_self', options);
 
